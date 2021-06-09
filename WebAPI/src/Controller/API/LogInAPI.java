@@ -59,15 +59,15 @@ public class LogInAPI extends HttpServlet {
 		if(logInSuccess == true)
 		{
 			List<JsonElement> headerElements = new ArrayList<JsonElement>();
-			headerElements.add(new JsonElement("alg", "HS256"));
-			headerElements.add(new JsonElement("typ", "JWT"));
+			headerElements.add(new JsonElement("alg", "HS256", true));
+			headerElements.add(new JsonElement("typ", "JWT", true));
 			
 			List<JsonElement> payloadElements = new ArrayList<JsonElement>();
 			Integer accountId = AccountDao.GetAccountId(username);
-			payloadElements.add(new JsonElement("iss", "Book store"));
-			payloadElements.add(new JsonElement("sub", "login"));
-			payloadElements.add(new JsonElement("aud", "user"));
-			payloadElements.add(new JsonElement("account_id", accountId.toString()));
+			payloadElements.add(new JsonElement("iss", "Book store", true));
+			payloadElements.add(new JsonElement("sub", "login", true));
+			payloadElements.add(new JsonElement("aud", "user", true));
+			payloadElements.add(new JsonElement("account_id", accountId.toString(), true));
 			
 			JsonStringBuilder builder = new JsonStringBuilder(headerElements);
 			String header = builder.BuildString();
@@ -80,8 +80,8 @@ public class LogInAPI extends HttpServlet {
 			String token = jwt.getToken();
 			
 			List<JsonElement> responseElements = new ArrayList<JsonElement>();
-			responseElements.add(new JsonElement("result", "succedded"));
-			responseElements.add(new JsonElement("token", token));
+			responseElements.add(new JsonElement("result", "succedded", true));
+			responseElements.add(new JsonElement("token", token, true));
 			
 			builder = new JsonStringBuilder(responseElements);
 			
@@ -92,8 +92,8 @@ public class LogInAPI extends HttpServlet {
 		else
 		{	
 			List<JsonElement> responseElements = new ArrayList<JsonElement>();
-			responseElements.add(new JsonElement("result", "failed"));
-			responseElements.add(new JsonElement("token", "none"));
+			responseElements.add(new JsonElement("result", "failed", true));
+			responseElements.add(new JsonElement("token", "none", true));
 			
 			JsonStringBuilder builder = new JsonStringBuilder(responseElements);
 			

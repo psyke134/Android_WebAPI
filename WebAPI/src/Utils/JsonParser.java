@@ -59,7 +59,7 @@ public class JsonParser {
 			{
 				//even number
 				value = matcher.group(1);
-				results.add(new JsonElement(key, value));
+				results.add(new JsonElement(key, value, true));
 				
 			}
 			
