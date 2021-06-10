@@ -22,7 +22,7 @@ public class CategoriesDao {
 		try
 		{
 			c = DBConnection.getConn();
-			String sql = "select category_name from categories";
+			String sql = "select category_name from book_store.categories";
 			PreparedStatement prstm = c.prepareStatement(sql);
 			ResultSet rs = prstm.executeQuery();
 			while(rs.next())

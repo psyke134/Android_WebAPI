@@ -21,7 +21,7 @@ public class AccountDao {
 		{
 			boolean result = false;
 			c = DBConnection.getConn();
-			String sql = "select * from accounts where username = \"" + username + "\" and password = \"" + password + "\"";
+			String sql = "select * from book_store.accounts where username = \"" + username + "\" and password = \"" + password + "\"";
 			PreparedStatement prstm = c.prepareStatement(sql);
 			ResultSet rs = prstm.executeQuery();
 			if(rs.next() == true)
@@ -50,7 +50,7 @@ public class AccountDao {
 		try
 		{
 			c = DBConnection.getConn();
-			String sql = "select account_id from accounts where username = \"" + username + "\"";
+			String sql = "select account_id from book_store.accounts where username = \"" + username + "\"";
 			PreparedStatement prstm = c.prepareStatement(sql);
 			ResultSet rs = prstm.executeQuery();
 			if(rs.next() == true)
@@ -110,7 +110,7 @@ public class AccountDao {
 		{
 			boolean result = false;
 			c = DBConnection.getConn();
-			String sql = "select * from accounts where username = \"" + username + "\"";
+			String sql = "select * from book_store.accounts where username = \"" + username + "\"";
 			PreparedStatement prstm = c.prepareStatement(sql);
 			ResultSet rs = prstm.executeQuery();
 			if(rs.next() == true)
@@ -140,7 +140,7 @@ public class AccountDao {
 		try
 		{
 			c = DBConnection.getConn();
-			String sql = "select * from user";
+			String sql = "select * from book_store.accounts";
 			PreparedStatement prstm = c.prepareStatement(sql);
 			ResultSet rs = prstm.executeQuery();
 			while(rs.next())
