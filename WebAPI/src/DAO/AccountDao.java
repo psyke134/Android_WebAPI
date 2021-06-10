@@ -79,7 +79,8 @@ public class AccountDao {
 		try
 		{
 			c = DBConnection.getConn();
-			String sql = "insert into accounts values(username, password, email, phone_number, address, name)";
+			String sql = "insert into book_store.accounts(username, password, email, phone_number, address, name, account_role_id, is_banned)\r\n" + 
+					" values(?,?,?,?,?,?,4,0)";
 			PreparedStatement prstm = c.prepareStatement(sql);
 			prstm.setString(1, username);
 			prstm.setString(2, password);
@@ -88,18 +89,49 @@ public class AccountDao {
 			prstm.setString(5, address);
 			prstm.setString(6, name);
 			prstm.executeUpdate();
-			thongBao = "Thêm người dùng thành công.";
+			thongBao = "succeeded";
 			if(c != null)
 				c.close();
 			return thongBao;
 		}
 		catch(SQLException e)
 		{
-			thongBao = "Thêm người dùng không thành công.\n";
-			thongBao += "Thông tin lỗi: "+e.toString();
+			thongBao = " failed ";
+			thongBao += "lỗi: "+e.toString();
 			return thongBao;
 		}
 	}
+	
+	
+	public static boolean CheckUserAccount(String username) throws ServletException, IOException
+	{
+		Connection c = null;
+		try
+		{
+			boolean result = false;
+			c = DBConnection.getConn();
+			String sql = "select * from accounts where username = \"" + username + "\"";
+			PreparedStatement prstm = c.prepareStatement(sql);
+			ResultSet rs = prstm.executeQuery();
+			if(rs.next() == true)
+			{
+				result = true;
+			}
+			
+			if(c != null)
+			{
+				c.close();
+			}
+			
+			return result;
+		}
+		catch(SQLException e)
+		{
+			return false;
+		}
+		
+	}
+	
 	
 	public static List<Account> GetAccounts() throws ServletException, IOException
 	{

@@ -47,35 +47,62 @@ public class JsonStringBuilder
 		//build string with list element
 		String jsonString = "{";
 		
-		for(int i = 0; i < elements.size(); i++)
-		{
-			JsonElement element = elements.get(i);
-			jsonString += "\"" + element.GetKey() + "\"";
-			jsonString += ":";
-			if(element.IsQuote() == true)
-				jsonString += "\"" + element.GetValue() + "\"";
-			else
-				jsonString += element.GetValue();
-			jsonString += ",";
+		if(elements == null) {
+			jsonString += "\"" + listElement.GetKey() + "\"";
+			jsonString += ":[";
+			
+			List<List<JsonElement>> jsons = listElement.GetNestedJsons();
+			for (int i = 0; i < jsons.size(); i++)
+			{
+				List<JsonElement> nestedElements = jsons.get(i);
+				JsonStringBuilder builder = new JsonStringBuilder(nestedElements);
+				jsonString += builder.BuildString();
+				
+				if(i != jsons.size() - 1)
+				{
+					jsonString += ",";
+				}
+			}
+			
+			jsonString += "]}";
+			return jsonString;
+			
 		}
 		
-		jsonString += "\"" + listElement.GetKey() + "\"";
-		jsonString += ":[";
-		
-		List<List<JsonElement>> jsons = listElement.GetNestedJsons();
-		for (int i = 0; i < jsons.size(); i++)
-		{
-			List<JsonElement> nestedElements = jsons.get(i);
-			JsonStringBuilder builder = new JsonStringBuilder(nestedElements);
-			jsonString += builder.BuildString();
+		else {
 			
-			if(i != jsons.size() - 1)
+			for(int i = 0; i < elements.size(); i++)
 			{
+				JsonElement element = elements.get(i);
+				jsonString += "\"" + element.GetKey() + "\"";
+				jsonString += ":";
+				if(element.IsQuote() == true)
+					jsonString += "\"" + element.GetValue() + "\"";
+				else
+					jsonString += element.GetValue();
 				jsonString += ",";
 			}
+			
+			jsonString += "\"" + listElement.GetKey() + "\"";
+			jsonString += ":[";
+			
+			List<List<JsonElement>> jsons = listElement.GetNestedJsons();
+			for (int i = 0; i < jsons.size(); i++)
+			{
+				List<JsonElement> nestedElements = jsons.get(i);
+				JsonStringBuilder builder = new JsonStringBuilder(nestedElements);
+				jsonString += builder.BuildString();
+				
+				if(i != jsons.size() - 1)
+				{
+					jsonString += ",";
+				}
+			}
+			
+			jsonString += "]}";
+			return jsonString;
+		}
 		}
 		
-		jsonString += "]}";
-		return jsonString;
-	}
+		
 }
