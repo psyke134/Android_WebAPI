@@ -52,7 +52,8 @@ public class CategoriesAPI extends HttpServlet {
 		for(Categories phantu:list_category) {
 			JsonElement jsonpt = new JsonElement("category",phantu.GetCategory(),true);
 			danhsachelement.add(jsonpt);
-			danhsachjson.add(danhsachelement);			
+			danhsachjson.add(danhsachelement);	
+			danhsachelement = new ArrayList<JsonElement>();
 		}	
 		
 
