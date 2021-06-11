@@ -29,6 +29,20 @@ public class BookDao {
 			ResultSet rs = prstm.executeQuery();
 			while(rs.next())
 			{
+				String publisher = rs.getString("publisher");
+				String publish_date = rs.getString("publish_date");
+				int page_count = rs.getInt("page_count");
+				String dimensions = rs.getString("dimensions");
+				String shipping_weight = rs.getString("shipping_weight");
+				String book_format = rs.getString("book_format");
+				
+				if(publisher == null) publisher = "";
+				if(publish_date == null) publish_date = "";
+				if(page_count == 0) page_count = -1;
+				if(dimensions == null) dimensions = "";
+				if(shipping_weight == null) shipping_weight = "-1";
+				if(book_format == null) book_format = "";
+				
 				Book entry = new Book(
 						String.valueOf(rs.getInt("book_id")),
 						rs.getString("name"),
@@ -39,13 +53,13 @@ public class BookDao {
 						rs.getString("overview"),
 						rs.getString("image"),
 						rs.getBoolean("flash_sale"),
-						rs.getString("publisher"),
-						rs.getString("publish_date"),
-						String.valueOf(rs.getInt("page_count")),
-						rs.getString("dimensions"),
-						rs.getString("shipping_weight"),
+						publisher,
+						publish_date,
+						String.valueOf(page_count),
+						dimensions,
+						shipping_weight,
 						String.valueOf(rs.getInt("stock")),
-						rs.getString("book_format"),
+						book_format,
 						"5",
 						rs.getBoolean("is_trending")
 						);
@@ -78,6 +92,20 @@ public class BookDao {
 			ResultSet rs = prstm.executeQuery();
 			while(rs.next())
 			{
+				String publisher = rs.getString("publisher");
+				String publish_date = rs.getString("publish_date");
+				int page_count = rs.getInt("page_count");
+				String dimensions = rs.getString("dimensions");
+				String shipping_weight = rs.getString("shipping_weight");
+				String book_format = rs.getString("book_format");
+				
+				if(publisher == null) publisher = "";
+				if(publish_date == null) publish_date = "";
+				if(page_count == 0) page_count = -1;
+				if(dimensions == null) dimensions = "";
+				if(shipping_weight == null) shipping_weight = "-1";
+				if(book_format == null) book_format = "";
+				
 				Book entry = new Book(
 						String.valueOf(rs.getInt("book_id")),
 						rs.getString("name"),
@@ -88,13 +116,13 @@ public class BookDao {
 						rs.getString("overview"),
 						rs.getString("image"),
 						rs.getBoolean("flash_sale"),
-						rs.getString("publisher"),
-						rs.getString("publish_date"),
-						String.valueOf(rs.getInt("page_count")),
-						rs.getString("dimensions"),
-						rs.getString("shipping_weight"),
+						publisher,
+						publish_date,
+						String.valueOf(page_count),
+						dimensions,
+						shipping_weight,
 						String.valueOf(rs.getInt("stock")),
-						rs.getString("book_format"),
+						book_format,
 						"5",
 						rs.getBoolean("is_trending")
 						);
@@ -127,6 +155,20 @@ public class BookDao {
 			ResultSet rs = prstm.executeQuery();
 			while(rs.next())
 			{
+				String publisher = rs.getString("publisher");
+				String publish_date = rs.getString("publish_date");
+				int page_count = rs.getInt("page_count");
+				String dimensions = rs.getString("dimensions");
+				String shipping_weight = rs.getString("shipping_weight");
+				String book_format = rs.getString("book_format");
+				
+				if(publisher == null) publisher = "";
+				if(publish_date == null) publish_date = "";
+				if(page_count == 0) page_count = -1;
+				if(dimensions == null) dimensions = "";
+				if(shipping_weight == null) shipping_weight = "-1";
+				if(book_format == null) book_format = "";
+				
 				Book entry = new Book(
 						String.valueOf(rs.getInt("book_id")),
 						rs.getString("name"),
@@ -137,13 +179,13 @@ public class BookDao {
 						rs.getString("overview"),
 						rs.getString("image"),
 						rs.getBoolean("flash_sale"),
-						rs.getString("publisher"),
-						rs.getString("publish_date"),
-						String.valueOf(rs.getInt("page_count")),
-						rs.getString("dimensions"),
-						rs.getString("shipping_weight"),
+						publisher,
+						publish_date,
+						String.valueOf(page_count),
+						dimensions,
+						shipping_weight,
 						String.valueOf(rs.getInt("stock")),
-						rs.getString("book_format"),
+						book_format,
 						"5",
 						rs.getBoolean("is_trending")
 						);

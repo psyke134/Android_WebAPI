@@ -40,7 +40,7 @@ public class GetBookAPI extends HttpServlet {
 		
 		String category = request.getParameter("category");
 		
-		List<Book> books;
+		List<Book> books = new ArrayList<Book>();
 		if(category == null)
 			books = BookDao.GetBooks();
 		else
